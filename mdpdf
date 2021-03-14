@@ -1,0 +1,21 @@
+#!bash.exe
+if [ -z $1 ]; then
+    echo Needs a file name;
+    exit 1;
+fi
+
+if [ ! -e $1 ]; then
+    echo $1: No such file or directory
+    exit 1;
+fi
+
+filename=${1%.*};
+file=$filename.replace.md;
+touch $file;
+perl "C:/Program Files/scripts/replace.pl" < $1 > $file;
+pandoc $file -o $filename.pdf --from markdown --highlight-style=tango;
+ECHO Created $filename.pdf;
+
+if [ "$2" != "--debug" ]; then
+    rm $file;
+fi
