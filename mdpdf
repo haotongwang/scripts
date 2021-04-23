@@ -10,12 +10,5 @@ if [ ! -e $1 ]; then
 fi
 
 filename=${1%.*};
-file=$filename.replace.md;
-touch $file;
-perl "C:/Program Files/scripts/replace.pl" < $1 > $file;
-pandoc $file -o $filename.pdf --from markdown --highlight-style=tango;
+pandoc $1 -o $filename.pdf --from markdown --highlight-style=tango;
 ECHO Created $filename.pdf;
-
-if [ "$2" != "--debug" ]; then
-    rm $file;
-fi
