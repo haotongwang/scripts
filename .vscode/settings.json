@@ -1,0 +1,8 @@
+{
+  "[python]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+  },
+  "python.formatting.autopep8Args": ["--indent-size=2"]
+}
