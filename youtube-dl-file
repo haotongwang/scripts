@@ -1,32 +1,5 @@
 #!bash.exe
-while getopts m opt; do
-  case $opt in
-    m) arg_m="SET"
-    ;;
-    \?) echo "Invalid option -$OPTARG" >&2
-    ;;
-  esac
-done
-
 # File paths
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-NAMES=/tmp/names;
-URLS=/tmp/urls;
-MUSIC_DIR=~/Music/youtube-dl;
 
-# Split names and urls
-awk '/^https/ && lastLine ~ /.+-.+[^$\n]/ { print lastLine } { lastLine = $0 }' "$1" >  "$NAMES";
-awk '/^https/ && lastLine ~ /.+-.+[^$\n]/ { print $0 } { lastLine = $0 }' "$1" >  "$URLS";
-
-# Check same number of elements
-NAMESN="$(wc -l < "$NAMES")";
-URLSN="$(wc -l < "$URLS")";
-if [[ "$NAMESN" -ne "$URLSN" ]]
-then
-    echo Names \("$NAMESN"\) not equal to Urls \("$URLSN"\);
-    exit 1;
-fi;
-
-if [[ -n $arg_m ]]; then rm -rfv "$MUSIC_DIR"; fi
-mkdir -vp "$MUSIC_DIR";
-python "$SCRIPT_DIR"/youtube-dl-rename.py "$NAMES" "$URLS" "$MUSIC_DIR" $@;
+python "$SCRIPT_DIR"/youtube-dl-rename.py $@;
