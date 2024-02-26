@@ -1,4 +1,3 @@
-#!bash.exe
 if [ -z $1 ]; then
     echo Needs a file name;
     exit 1;
@@ -11,4 +10,4 @@ fi
 
 filename=${1%.*};
 pandoc $1 -o $filename.pdf --from markdown --highlight-style=tango;
-ECHO Created $filename.pdf;
+echo Created $filename.pdf;
