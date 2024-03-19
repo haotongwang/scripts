@@ -27,6 +27,9 @@ shopt -s checkwinsize
 # match all files and zero or more directories and subdirectories.
 shopt -s globstar
 
+# extended glob
+shopt -s extglob
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -43,7 +46,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -116,37 +119,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH="$PATH:/home/nick/miniconda3/bin"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/nick/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/nick/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/nick/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/nick/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
 eval "$(starship init bash)"
 
-
-#[ -f "/home/nick/.ghcup/env" ] && source "/home/nick/.ghcup/env" # ghcup-env
-
-export PATH="$PATH:/home/nick/snap/flutter/common/flutter/bin"
-export PATH="$PATH:/usr/local/android-studio/bin"
-export PATH="$PATH:/home/nick/Android/Sdk/cmdline-tools/latest/bin"
-export PATH="$PATH:/home/nicki/.local/bin"
-export PATH="$PATH:/home/nick/idea-IC-233.14475.28/bin"
-export PATH="$PATH:/home/nick/scripts"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-[ -f "/home/nick/.ghcup/env" ] && source "/home/nick/.ghcup/env" # ghcup-env
+export PATH="$PATH:~/scripts"
