@@ -123,3 +123,5 @@ fi
 eval "$(starship init bash)"
 
 export PATH="$PATH:~/scripts"
+
+eval `ssh-agent`
