@@ -1,19 +1,21 @@
 # Copy in files
-for f in $(ls -A1 setup_files); do
+for f in $(ls -A1 setup_files/home); do
   echo "Copying $f into $HOME"
   if [ -e $HOME/$f ]; then
     cp $HOME/$f $HOME/$f.old
   fi
-  cp -r setup_files/$f $HOME
+  cp -r setup_files/home/$f $HOME
 done
+echo "Remember to check user values in .gitconfig"
 
 # Setup vim
 echo "Setting up vim"
 git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
-echo "Install fonts at https://github.com/amix/vimrc?tab=readme-ov-file#fonts"
+echo "Finished vim setup"
 
 # Setup starship terminal prompt
 echo "Setting up starship terminal prompt"
-curl -sS https://starship.rs/install.sh | sh
-echo "Install fonts at https://starship.rs/guide/#%F0%9F%9A%80-installation"
+unzip setup_files/starship.zip -d .
+echo "Finished starship setup"
+echo "Install a font online at https://starship.rs/guide/#%F0%9F%9A%80-installation, or use packaged fonts in ./fonts"
